@@ -1,6 +1,8 @@
 module RN
   module Commands
     module Books
+      PROMPT = TTY::Prompt.new
+      
       class Create < Dry::CLI::Command
         desc 'Create a book'
 
@@ -12,7 +14,15 @@ module RN
         ]
 
         def call(name:, **)
-          warn "TODO: Implementar creación del cuaderno de notas con nombre '#{name}'.\nPodés comenzar a hacerlo en #{__FILE__}:#{__LINE__}."
+          if name.match(/\A[a-z0-9\s]+\Z/i)
+            if ! Dir.exist?(Dir.home + "/.my_rns/#{name}")
+              Dir.mkdir(File.join(Dir.home, ".my_rns/#{name}"), 0700)
+            else
+              PROMPT.error('Ya existe un cuaderno con ese nombre')  
+            end
+          else 
+            PROMPT.error('Nombre de archivo inválido')
+          end
         end
       end
 
@@ -30,7 +40,20 @@ module RN
 
         def call(name: nil, **options)
           global = options[:global]
-          warn "TODO: Implementar borrado del cuaderno de notas con nombre '#{name}' (global=#{global}).\nPodés comenzar a hacerlo en #{__FILE__}:#{__LINE__}."
+          if global
+            path = Dir.home + "/.my_rns/cuaderno_global"
+            Dir.foreach(path) do |file|
+              if ((file.to_s != ".") and (file.to_s != ".."))
+                File.delete("#{path}/#{file}")
+              end
+            end
+          else
+            if Dir.exist?(Dir.home + "/.my_rns/#{name}")          
+              FileUtils.remove_dir(Dir.home + "/.my_rns/#{name}")
+            else
+              PROMPT.error("No existe un cuaderno cuyo nombre sea: #{name}")
+            end
+          end
         end
       end
 
@@ -42,7 +65,9 @@ module RN
         ]
 
         def call(*)
-          warn "TODO: Implementar listado de los cuadernos de notas.\nPodés comenzar a hacerlo en #{__FILE__}:#{__LINE__}."
+          Dir.chdir(Dir.home + "/.my_rns/")
+          cuaderno = Dir.glob('*').select {|f| File.directory? f}
+          cuaderno.each {|book| p "> #{book}", :rainbow}
         end
       end
 
@@ -59,7 +84,15 @@ module RN
         ]
 
         def call(old_name:, new_name:, **)
-          warn "TODO: Implementar renombrado del cuaderno de notas con nombre '#{old_name}' para que pase a llamarse '#{new_name}'.\nPodés comenzar a hacerlo en #{__FILE__}:#{__LINE__}."
+          if new_name.match(/\A[a-z0-9\s]+\Z/i)
+            if Dir.exist?(Dir.home + "/.my_rns/#{old_name}")          
+              File.rename(Dir.home+"/.my_rns/#{old_name}", Dir.home + "/.my_rns/#{new_name}")
+            else
+              PROMPT.error("No existe un cuaderno cuyo nombre sea: #{old_name}")
+            end
+          else
+            PROMPT.error("Nombre de archivo inválido")
+          end
         end
       end
     end
