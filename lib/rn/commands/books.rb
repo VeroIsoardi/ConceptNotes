@@ -2,7 +2,7 @@ module RN
   module Commands
     module Books
       PROMPT = TTY::Prompt.new
-      
+
       class Create < Dry::CLI::Command
         desc 'Create a book'
 
@@ -15,13 +15,14 @@ module RN
 
         def call(name:, **)
           if name.match(/\A[a-z0-9\s]+\Z/i)
-            if ! Dir.exist?(Dir.home + "/.my_rns/#{name}")
-              Dir.mkdir(File.join(Dir.home, ".my_rns/#{name}"), 0700)
-            else
-              PROMPT.error('Ya existe un cuaderno con ese nombre')  
-            end
+            status = Book.new.create(name)
           else 
-            PROMPT.error('Nombre de archivo inválido')
+            status={'message'=>'Nombre de cuaderno inválido', 'type'=>'error'}
+          end
+          if status['type'] == 'ok'
+            PROMPT.ok(status['message'])
+          else
+            PROMPT.error(status['message'])
           end
         end
       end
@@ -41,18 +42,13 @@ module RN
         def call(name: nil, **options)
           global = options[:global]
           if global
-            path = Dir.home + "/.my_rns/cuaderno_global"
-            Dir.foreach(path) do |file|
-              if ((file.to_s != ".") and (file.to_s != ".."))
-                File.delete("#{path}/#{file}")
-              end
-            end
+            name="global"
+          end
+          status = Book.new.delete(name)
+          if status['type'] == 'ok'
+            PROMPT.ok(status['message'])
           else
-            if Dir.exist?(Dir.home + "/.my_rns/#{name}")          
-              FileUtils.remove_dir(Dir.home + "/.my_rns/#{name}")
-            else
-              PROMPT.error("No existe un cuaderno cuyo nombre sea: #{name}")
-            end
+            PROMPT.error(status['message'])
           end
         end
       end
@@ -65,9 +61,7 @@ module RN
         ]
 
         def call(*)
-          Dir.chdir(Dir.home + "/.my_rns/")
-          cuaderno = Dir.glob('*').select {|f| File.directory? f}
-          cuaderno.each {|book| p "> #{book}", :rainbow}
+          Book.new.list
         end
       end
 
@@ -85,13 +79,14 @@ module RN
 
         def call(old_name:, new_name:, **)
           if new_name.match(/\A[a-z0-9\s]+\Z/i)
-            if Dir.exist?(Dir.home + "/.my_rns/#{old_name}")          
-              File.rename(Dir.home+"/.my_rns/#{old_name}", Dir.home + "/.my_rns/#{new_name}")
-            else
-              PROMPT.error("No existe un cuaderno cuyo nombre sea: #{old_name}")
-            end
+            status= Book.new.rename(old_name, new_name)
           else
-            PROMPT.error("Nombre de archivo inválido")
+            status={"message"=>"Nombre de cuaderno inválido", "type"=>"error"}
+          end
+          if status['type'] == 'ok'
+            PROMPT.ok(status['message'])
+          else
+            PROMPT.error(status['message'])
           end
         end
       end
