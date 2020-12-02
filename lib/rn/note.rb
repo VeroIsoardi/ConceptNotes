@@ -143,5 +143,67 @@ module RN
             end
             return message
         end
+
+        def plain_text_to_HTML(path)
+            data=""
+            File.foreach(path) do |line|
+                data << CommonMarker.render_html(line, :DEFAULT, [:table, :tasklist, :strikethrough, :autolink, :tagfilter])        
+            end
+            File.write(path[0..-3]  + 'html', data)
+        end
+
+        def export_all()
+            filename = File.join("**", "*.rn")
+            Dir.glob(filename).each do|f|
+                if File.file? f 
+                    plain_text_to_HTML(f)
+                end
+            end
+        end
+
+        def export_book(path)
+            Dir.chdir(path)
+            cuaderno = Dir.glob('*.rn').select {|f| File.file? f}
+            cuaderno.each {|note| plain_text_to_HTML(note)}
+        end
+
+        def export(title, book)
+            path = Dir.home + "/.my_rns"
+            Dir.chdir(path)
+            if book != nil
+                if book == "global"
+                    export_book(path)
+                    message={"message"=>"La notas se exportaron con éxito!", "type"=> "ok"}
+                elsif Dir.exist?(Dir.home + "/.my_rns/"+ book)
+                    path+="/#{book}"
+                    if title != nil
+                        if File.exist?("#{path}/#{title}.rn")
+                            plain_text_to_HTML("#{path}/#{title}.rn")
+                            message={"message"=>"La nota #{title} en el cuaderno #{book}, se exportó con éxito!", "type"=> "ok"}
+                        else
+                            message={"message"=>"No existe la nota #{title} en el cuaderno #{book}", "type"=> "error"}
+                        end
+                    else
+                        export_book(path)
+                        message={"message"=>"Las notas del cuaderno #{book}, se exportaron con éxito!", "type"=> "ok"}
+                    end
+                else
+                    message={"message"=>"No existe el cuaderno #{book}", "type"=> "error"}
+                end
+            else
+                if title != nil
+                    if File.exist?("#{path}/#{title}.rn")
+                        plain_text_to_HTML("#{path}/#{title}.rn")
+                        message={"message"=>"La nota #{title} se exportó con éxito!", "type"=> "ok"}
+                    else
+                        message={"message"=>"No existe la nota #{title} en el cuaderno global", "type"=> "error"}
+                    end
+                else
+                    export_all()
+                    message={"message"=>"Todas las notas se exportaron con éxito!", "type"=> "ok"}
+                end
+            end
+            return message
+        end
     end
 end

@@ -11,3 +11,5 @@ gem "tty-editor"
 gem "tty-prompt"
 
 gem "tty-file"
+
+gem 'commonmarker'

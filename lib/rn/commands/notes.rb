@@ -145,6 +145,36 @@ module RN
           end
         end
       end
+
+      class Export < Dry::CLI::Command
+        desc 'Export 1 or many notes'
+
+        argument :title, required: false,  desc: 'Title of the note'
+        option :book, type: :string,  desc: 'Book'
+        option :global, type: :boolean, desc: 'List only notes from the global book'
+
+        example [
+          '                 # Export notes from all books (including the global book)',
+          '--global         # Export notes from the global book',
+          '--book "My book" # Export notes from the book named "My book"',
+          'todo             # Exports a note titled "todo" from the global book',
+          '"New note" --book "My book" # Exports a note titled "New note" from the book "My book"'
+        ]
+
+        def call(title: nil, **options)
+          book = options[:book]
+          global = options[:global]
+          if global != nil
+            book = "global"
+          end
+          status = Note.new.export(title, book)
+          if status['type'] == 'ok'
+            PROMPT.ok(status['message'])
+          else
+            PROMPT.error(status['message'])
+          end
+        end
+      end
     end
   end
 end
