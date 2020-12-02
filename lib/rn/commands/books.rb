@@ -1,8 +1,7 @@
+require 'rn/helpers'
 module RN
   module Commands
     module Books
-      PROMPT = TTY::Prompt.new
-
       class Create < Dry::CLI::Command
         desc 'Create a book'
 
@@ -19,11 +18,7 @@ module RN
           else 
             status={'message'=>'Nombre de cuaderno inválido', 'type'=>'error'}
           end
-          if status['type'] == 'ok'
-            PROMPT.ok(status['message'])
-          else
-            PROMPT.error(status['message'])
-          end
+          message(status)
         end
       end
 
@@ -45,11 +40,7 @@ module RN
             name="global"
           end
           status = Book.new.delete(name)
-          if status['type'] == 'ok'
-            PROMPT.ok(status['message'])
-          else
-            PROMPT.error(status['message'])
-          end
+          message(status)
         end
       end
 
@@ -83,11 +74,7 @@ module RN
           else
             status={"message"=>"Nombre de cuaderno inválido", "type"=>"error"}
           end
-          if status['type'] == 'ok'
-            PROMPT.ok(status['message'])
-          else
-            PROMPT.error(status['message'])
-          end
+          message(status)
         end
       end
     end

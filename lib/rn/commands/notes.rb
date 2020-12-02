@@ -1,3 +1,4 @@
+require 'rn/helpers'
 module RN
   module Commands
     module Notes
@@ -21,11 +22,7 @@ module RN
           else
             status = {"message"=>"Nombre de nota inválido", "type"=>"error"}  
           end
-          if status['type'] == 'ok'
-            PROMPT.ok(status['message'])
-          else
-            PROMPT.error(status['message'])
-          end
+          message(status)
         end
       end
 
@@ -47,11 +44,7 @@ module RN
             book = "global"
           end
           status = Note.new.delete(title, book)
-          if status['type'] == 'ok'
-            PROMPT.ok(status['message'])
-          else
-            PROMPT.error(status['message'])
-          end
+          message(status)
         end
       end
 
@@ -69,11 +62,7 @@ module RN
         def call(title:, **options)
           book = options[:book]
           status = Note.new.edit(title, book)
-          if status['type'] == 'ok'
-            PROMPT.ok(status['message'])
-          else
-            PROMPT.error(status['message'])
-          end
+          message(status)
         end
       end
 
@@ -97,11 +86,7 @@ module RN
           else
             status = {"message"=>"Nombre de nota inválido", "type"=>"error"}
           end
-          if status['type'] == 'ok'
-            PROMPT.ok(status['message'])
-          else
-            PROMPT.error(status['message'])
-          end
+          message(status)
         end
       end
 
@@ -141,7 +126,7 @@ module RN
           book = options[:book]
           status = Note.new.show(title, book)
           if status
-            PROMPT.error(status['message'])
+            message(status)
           end
         end
       end
@@ -168,11 +153,7 @@ module RN
             book = "global"
           end
           status = Note.new.export(title, book)
-          if status['type'] == 'ok'
-            PROMPT.ok(status['message'])
-          else
-            PROMPT.error(status['message'])
-          end
+          message(status)
         end
       end
     end
