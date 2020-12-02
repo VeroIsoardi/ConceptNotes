@@ -12,7 +12,7 @@ $ ruby bin/rn [args]
 ```
 >Para la ejecución de la herramienta, es necesario tener una versión reciente de
 > Ruby (2.5 o posterior) y tener instaladas sus dependencias, las cuales se manejan con
-> Bundler. 
+> Bundle. 
 
 ### Comandos
 * Books: lista las posibles acciones a realizar para con los cuadernos.
@@ -27,3 +27,4 @@ $ ruby bin/rn [args]
   - Notes list --> lista todas las notas, o la de una carpeta específica
   - Notes retitle OLD_TITLE NEW_TITLE--> renombra una nota
   - Notes show TITLE --> Muestra una nota, título y contenido
+  - Notes export [TITLE] --> Exporta una o más notas en texto plano a HTML con formato(Markdown), en el mismo directorio, con el mismo nombre. 
