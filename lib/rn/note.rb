@@ -101,17 +101,16 @@ module RN
         def list(book, global)
             path = Dir.home + "/.my_rns"
             Dir.chdir(path)
-            if book != nil
-                if Dir.exist?(path + '/' + book)
-                    Dir.chdir(path + '/' + book)
-                    cuaderno = Dir.glob('*').select {|f| File.file? f}
-                    cuaderno.each {|note| p note, :rainbow}
-                else
-                    TTY::Prompt.new.error("No existe un cuaderno #{book}")
+            if book != nil or global
+                if !global
+                    if Dir.exist?(path + '/' + book)
+                        Dir.chdir(path + '/' + book)
+                    else
+                        return TTY::Prompt.new.error("No existe un cuaderno #{book}")
+                    end
                 end
-            elsif global
                 cuaderno = Dir.glob('*').select {|f| File.file? f}
-                cuaderno.each {|note| p note, :rainbow}           
+                cuaderno.each {|note| p note, :rainbow}
             else
                 files=Dir['**/*'].reject {|fn| File.directory?(fn)}
                 files.each {|file| p file, :rainbow}
@@ -133,13 +132,13 @@ module RN
             path = Dir.home + "/.my_rns"
             if book != nil
                 path = path + '/' + book
-                if Dir.exist?(path)
-                    message = show_note(path,title, book)
-                else
-                    message = {"message"=>"No existe el cuaderno #{book}", "type"=>"error"}
-                end
             else
-                message = show_note(path,title, "global")
+                book="global"
+            end
+            if Dir.exist?(path)
+                message = show_note(path,title, book)
+            else
+                message = {"message"=>"No existe el cuaderno #{book}", "type"=>"error"}
             end
             return message
         end

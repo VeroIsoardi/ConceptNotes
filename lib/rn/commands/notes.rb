@@ -106,7 +106,7 @@ module RN
         def call(**options)
           book = options[:book]
           global = options[:global]
-          status = Note.new.list(book,global)
+          Note.new.list(book,global)
         end
       end
 
