@@ -13,3 +13,31 @@
  *= require_tree .
  *= require_self
  */
+
+.typewriter {
+  border-right: solid 3px rgba(248, 113, 113, 0.75);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.typewriter {
+  animation: animated-text 5s steps(29, end) 1s 1 normal both,
+    animated-cursor 400ms steps(29, end) infinite;
+}
+@keyframes animated-text {
+  from {
+    width: 0;
+  }
+  to {
+    width: 550px;
+  }
+}
+
+@keyframes animated-cursor {
+  from {
+    border-right-color: rgba(248, 113, 113, 0.75);
+  }
+  to {
+    border-right-color: rgb(255, 255, 255);
+  }
+}

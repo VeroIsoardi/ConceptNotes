@@ -1,0 +1,29 @@
+<div class="flex h-screen bg-red-100">
+  <div class="w-full max-w-xs m-auto bg-white rounded p-5">
+    <header>
+      <img class="rounded-full w-20 mx-auto mb-5" src="<%= asset_path('icono.png') %>">
+    </header>
+    <%= form_with url: sessions_path, method: :post do |f| %>
+      <div>
+        <label for="email-address" class="text-sm font-bold text-gray-700 tracking-wide">Email Address</label>
+        <input id="email-address" class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-red-500">
+      </div>
+      <div class="mt-8">
+        <div class="flex justify-between items-center">
+          <label for="password" class="text-sm font-bold text-gray-700 tracking-wide">
+            Password
+          </label>
+        </div>
+        <input id="password" type="password" class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-red-500">            
+      </div>
+      <div class="mt-10">
+        <button type="submit" value="<% f.submit %>" class="bg-red-500 text-gray-100 p-4 w-full rounded-full tracking-wide font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-red-600 shadow-lg">
+          Log In
+        </button>
+      </div>
+    <% end %>
+    <div class="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
+      Don't have an account ? <%= link_to 'Sign up', :register, class: 'cursor-pointer text-red-600 hover:text-red-800'%>
+    </div>
+  </div>
+</div>
