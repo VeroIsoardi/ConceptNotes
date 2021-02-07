@@ -1,0 +1,35 @@
+<main class="flex w-full h-screen">
+  <aside class="w-64 h-screen bg-gray shadow-md hidden sm:block">
+    <%=render 'sidebar'%>  
+  </aside>
+  <section class="w-3/4 mt-4 ml-4">
+    <span id="notice"><%= notice %></span>
+    <div class="grid grid-cols-4 gap-4 place-items-auto">
+      <% @books.each do |book| %> 
+        <div class="row h-48 w-52">
+          <section class="card bg-gray-200 transition shadow-xl w-52 h-44 rounded-3xl absolute z-10 grid place-items-center">
+            <div class="flex flex-row justify-end">
+              <div class="card bg-gray-200 h-5/6 w-3/4 overflow-hidden relative flex justify-center ml-2">
+                <img class="w-40" src="<%= asset_path('folder.svg') %>">
+              </div>
+              <div class="dropdown inline-block relative">
+                <button class="text-gray-500 mt-3 action cursor-pointer hover:text-blue-500">
+                  <svg class="h-6 w-6 text-gray-400" stroke="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                  </svg>
+                </button>
+                <ul class="dropdown-menu absolute hidden text-gray-700 pt-1 -right-0.5">
+                  <li class=""><%= link_to 'Rename', edit_book_path(book), class: 'rounded-t bg-gray-300 hover:bg-gray-400 pb-2 px-4 block whitespace-no-wrap border-t border-l border-r border-white' %></li>
+                  <li class=""><%= link_to 'Delete', book, method: :delete, class: 'rounded-b bg-gray-300 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap border border-white'%></li>
+                </ul>
+              </div>
+            </div>
+            <div class="card bg-white overflow-hidden w-52 relative flex justify-center text-blue-900 rounded-b-3xl">
+              <%= book.title%>
+            </div>
+          </section>
+        </div>
+      <%end%>
+    </div>
+  </section>
+</main>
