@@ -15,7 +15,12 @@ class NotesController < ApplicationController
   def create
     @note = current_user.notes.new(note_params)
     if @note.save
-      redirect_to :root, notice: "Note was successfully created."
+      flash['notice'] = "Note was successfully created."
+      if @note.book_id == nil
+        redirect_to :root
+      else
+        redirect_to book_path(@note.book_id)
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -24,7 +29,12 @@ class NotesController < ApplicationController
   # PATCH/PUT /notes/1 
   def update
     if @note.update(note_params)
-      redirect_to :root, notice: "Note was successfully updated."
+      flash['notice'] = "Note was successfully updated."
+      if @note.book_id == nil
+        redirect_to :root
+      else
+        redirect_to book_path(@note.book_id)
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -33,7 +43,12 @@ class NotesController < ApplicationController
   # DELETE /notes/1
   def destroy
     @note.destroy
-    redirect_to :root, notice: "Note was successfully destroyed."
+    flash[:notice] = "Note was successfully destroyed."
+    if @note.book_id == nil
+      redirect_to :root
+    else
+      redirect_to book_path(@note.book_id)
+    end
   end
 
   private

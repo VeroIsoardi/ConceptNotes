@@ -29,7 +29,7 @@
                 <%= form.label :content, class: 'text-sm font-bold text-gray-700 tracking-wide' %>
                 <%= form.text_area :content, size:"70x10" ,class: 'w-full h-auto text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-blue-500' %>
               </div>
-              <%= form.hidden_field :book_id, value: 'book' %>
+              <%= form.hidden_field :book_id, value: book_id %>
               <div class="actions mt-10 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                 <%= form.submit button, class: 'w-full inline-flex justify-center border border-transparent bg-blue-500 rounded-full text-gray-100 tracking-wide font-semibold font-display shadow-sm px-4 py-2 hover:bg-blue-700 focus:shadow-outline sm:ml-3 sm:w-auto sm:text-sm '%>                  <%= link_to 'Cancel', :root,  class:'w-full inline-flex justify-center border border-gray-300 shadow-sm px-4 py-2 bg-gray-100 text-base tracking-wide font-medium text-gray-700 rounded-full hover:bg-gray-400 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm'%>
               </div>          
