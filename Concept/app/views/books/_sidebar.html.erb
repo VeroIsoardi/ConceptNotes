@@ -29,8 +29,7 @@
 						<path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V8z" clip-rule="evenodd" />
 					</svg>
 				</span>
-				<%book=@book.id%>
-        <%= link_to 'Add note', new_note_path(book), class: 'ml-3'%>
+        <%= link_to 'Add note', new_note_path(book: @book.id), class: 'ml-3'%>
 			</div>
 		</li>
     <li class="my-px">
@@ -40,7 +39,7 @@
 						<path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
 					</svg>
 				</span>
-        <%= link_to 'Export all', '#', class: 'ml-3'%>
+        <%= link_to 'Export all', export_book_path(@book.id), class: 'ml-3', target:'_blank'%>
 			</div>
 		</li>
 		<li class="my-px">

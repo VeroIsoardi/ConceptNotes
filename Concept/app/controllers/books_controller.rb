@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: %i[ show edit update destroy ]
+  before_action :set_book, only: %i[ show edit update destroy export]
   before_action :require_login
 
   # GET /books/new
@@ -40,6 +40,17 @@ class BooksController < ApplicationController
     @notes = @book.notes.where(user_id: current_user.id)
   end
   
+  def export
+    @html = CommonMarker.render_html(@book.title, :DEFAULT)
+    @book.notes.each do |note|
+      @html << CommonMarker.render_html('***', :DEFAULT)
+      @html << CommonMarker.render_html("**#{note.title}**", :DEFAULT)
+      @html << CommonMarker.render_html('---', :DEFAULT)
+      @html << CommonMarker.render_html(note.content, :DEFAULT, [:table, :tasklist, :strikethrough, :autolink, :tagfilter])  
+    end
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_book

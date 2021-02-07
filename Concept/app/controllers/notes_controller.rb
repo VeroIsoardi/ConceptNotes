@@ -1,10 +1,12 @@
 class NotesController < ApplicationController
-  before_action :set_note, only: %i[ show edit update destroy ]
+  before_action :set_note, only: %i[ show edit update destroy export]
 
   
   # GET /notes/new
   def new
     @note = Note.new
+    @note.book_id = params[:book]
+    
   end
 
   # GET /notes/1/edit
@@ -49,6 +51,12 @@ class NotesController < ApplicationController
     else
       redirect_to book_path(@note.book_id)
     end
+  end
+
+  def export 
+    @html = CommonMarker.render_html("**#{@note.title}**", :DEFAULT)
+    @html << CommonMarker.render_html('---', :DEFAULT)
+    @html << CommonMarker.render_html(@note.content, :DEFAULT)  
   end
 
   private
