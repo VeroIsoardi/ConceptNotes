@@ -16,8 +16,16 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+  end
 
+  def update
+    if @user.update(user_params)
+      redirect_to :root, notice: "Profile was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity 
+    end
+  end
   
   private
   def user_params
