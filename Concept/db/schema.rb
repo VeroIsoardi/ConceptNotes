@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_01_225022) do
+ActiveRecord::Schema.define(version: 2021_02_04_175912) do
+
+  create_table "books", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "title"], name: "index_books_on_user_id_and_title", unique: true
+    t.index ["user_id"], name: "index_books_on_user_id"
+  end
+
+  create_table "notes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "content"
+    t.bigint "book_id"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_notes_on_book_id"
+    t.index ["title", "user_id", "book_id"], name: "index_notes_on_title_and_user_id_and_book_id", unique: true
+    t.index ["user_id"], name: "index_notes_on_user_id"
+  end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "username", null: false
@@ -22,4 +43,6 @@ ActiveRecord::Schema.define(version: 2021_02_01_225022) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "notes", "books"
+  add_foreign_key "notes", "users"
 end
