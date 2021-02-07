@@ -2,15 +2,6 @@ class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
   before_action :require_login
 
-  # GET /books
-  def index
-    @books = Book.all
-  end
-
-  # GET /books/1 
-  def show
-  end
-
   # GET /books/new
   def new
     @book = Book.new
@@ -49,6 +40,11 @@ class BooksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_book
       @book = Book.find(params[:id])
+      if !(@book.user_id == current_user.id)
+        redirect_to :root, notice: "Uh oh the page you were looking for doesn't exist."
+      else
+        return @book
+      end
     end
 
     # Only allow a list of trusted parameters through.

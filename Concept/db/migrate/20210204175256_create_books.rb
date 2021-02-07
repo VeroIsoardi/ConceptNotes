@@ -4,8 +4,6 @@ class CreateBooks < ActiveRecord::Migration[6.1]
       t.string :title, null: false
       t.belongs_to :user, null: false
       t.timestamps
-      
     end
-    add_index :books,[:user_id, :title ], unique: true
   end
 end

@@ -12,38 +12,41 @@
         </div>
 			</div>
 		</li>
-				<li class="my-px">
-					<span class="flex font-medium text-sm text-gray-400 px-4 my-4 uppercase">Notebooks</span>
-				</li>
-        <% @list.each do |book| %>
-				<li class="my-px">
-					<a href="#" class="flex flex-row items-center h-12 px-4 rounded-lg text-gray-600 hover:bg-gray-100">
-						<span class="flex items-center justify-center text-lg text-gray-400">
-              <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-  							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"  d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
-							</svg>
-            </span>
-						<span class="ml-3"><%= book.title%></span>
-					</a>
-				</li>
-        <%end%>
-				<li class="my-px">
-          <div class="flex flex-row items-center h-12 px-4 rounded-lg text-gray-600 hover:bg-gray-100">
-						<span class="flex items-center justify-center text-lg text-green-400">
-							<svg fill="none"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								viewBox="0 0 24 24"
-								stroke="currentColor"
-								class="h-6 w-6">
-								<path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-							</svg>
-						</span>
-            <%= link_to 'Add new', new_book_path, class: 'ml-3'%>
-					</div>
-				</li>
-				<li class="my-px">
+		<li class="my-px">
+			<span class="flex font-medium text-sm text-gray-400 px-4 my-4 uppercase">Funcionalities</span>
+		</li>
+    <li class="my-px">
+      <div class="flex flex-row items-center h-12 px-4 rounded-lg text-gray-600 hover:bg-gray-100">
+				<span class="flex items-center justify-center text-lg text-gray-400">
+					<svg stroke-width="1.7" stroke="currentColor" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none">
+						<path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
+						<path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11h4m-2-2v4" />
+					</svg>
+				</span>
+        <%= link_to 'Add book', new_book_path, class: 'ml-3'%>
+			</div>
+		</li>
+    <li class="my-px">
+      <div class="flex flex-row items-center h-12 px-4 rounded-lg text-gray-600 hover:bg-gray-100">
+				<span class="flex items-center justify-center text-lg text-gray-400">
+					<svg stroke-width="1.5" stroke="currentColor" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none">
+						<path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V8z" clip-rule="evenodd" />
+					</svg>
+				</span>
+        <%= link_to 'Add note', new_note_path, class: 'ml-3'%>
+			</div>
+		</li>
+    <li class="my-px">
+      <div class="flex flex-row items-center h-12 px-4 rounded-lg text-gray-600 hover:bg-gray-100">
+				<span class="flex items-center justify-center text-lg text-gray-400">
+					<svg stroke-width="1.5" stroke="currentColor" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none">
+						<path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
+					</svg>
+				</span>
+        <%= link_to 'Export all', '#', class: 'ml-3'%>
+			</div>
+		</li>
+		<li class="my-px">
 					<span class="flex font-medium text-sm text-gray-400 px-4 my-4 uppercase">Account</span>
 				</li>
 				<li class="my-px">
@@ -70,7 +73,7 @@
 								<path d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"></path>
 							</svg>
 						</span>
-            <span><%= link_to "Logout", :logout, method: :post, class: 'ml-3' %></span>
+            <span><%= link_to "Logout", session_path(current_user[:id]), method: :delete, class: 'ml-3' %></span>
 					</div>
 				</li>
 			</ul>
