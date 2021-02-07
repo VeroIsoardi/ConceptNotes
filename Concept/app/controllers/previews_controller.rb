@@ -1,6 +1,6 @@
 class PreviewsController < ApplicationController
   def index
     @books = current_user.books
-    @list = current_user.books.first 3
+    @notes = current_user.notes.where(book_id: nil)
   end
 end

@@ -1,0 +1,42 @@
+<div class="fixed z-10 inset-0 overflow-y-auto">
+  <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+      <div class="absolute inset-0 bg-blue-200 opacity-50"></div>
+    </div>
+    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+    <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+      <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <div class="sm:flex sm:items-start">
+          <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10">
+            <svg class="h-6 w-6 text-blue-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+            </svg>
+          </div>
+          <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+            <h3 class="text-xl leading-6 font-medium text-red-900 mt-2" id="modal-headline">
+              <%= title %>
+            </h3>
+          </div>
+        </div>
+        <div class="form m-4">
+          <div class="mt-2">
+            <%= form_with(model: @note) do |form| %>
+              <div class="field">
+                <%= form.label :title, class: 'text-sm font-bold text-gray-700 tracking-wide'%>
+                <%= form.text_field :title, class: 'w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-blue-500'%>
+              </div>
+              <div class="field">
+                <%= form.label :content, class: 'text-sm font-bold text-gray-700 tracking-wide' %>
+                <%= form.text_area :content, size:"70x10" ,class: 'w-full h-auto text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-blue-500' %>
+              </div>
+              <%= form.hidden_field :book_id, value: 'book' %>
+              <div class="actions mt-10 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <%= form.submit button, class: 'w-full inline-flex justify-center border border-transparent bg-blue-500 rounded-full text-gray-100 tracking-wide font-semibold font-display shadow-sm px-4 py-2 hover:bg-blue-700 focus:shadow-outline sm:ml-3 sm:w-auto sm:text-sm '%>                  <%= link_to 'Cancel', :root,  class:'w-full inline-flex justify-center border border-gray-300 shadow-sm px-4 py-2 bg-gray-100 text-base tracking-wide font-medium text-gray-700 rounded-full hover:bg-gray-400 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm'%>
+              </div>          
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
