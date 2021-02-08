@@ -1,24 +1,19 @@
-# README
+## Concept App
+- Ruby version: 2.7.1
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- Rails version: 6.1.1
 
-Things you may want to cover:
+- Mysql database
 
-* Ruby version
+- Sorcery gem for authentication
 
-* System dependencies
+- Tailwind css gem for views
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Database creation
+  > rails db:drop db:create db:migrate db:seed
+---
+### Funcionalities
+- User sign up and log in.
+- Create, rename and delete notebook.
+- Create, update and delete note.
+- Export a note, a notebook or all notes.
