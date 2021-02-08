@@ -1,1 +1,2 @@
-<%= render partial: 'form', note: @note, locals: {title: 'Edit note', button: 'Update', book_id: @book} %>
+<%book = params[:book]%>
+<%= render partial: 'form', note: @note, locals: {title: 'Edit note', button: 'Update', book_id: book} %>

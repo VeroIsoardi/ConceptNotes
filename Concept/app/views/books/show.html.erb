@@ -20,8 +20,7 @@
                   </svg>
                 </button>
                 <ul class="dropdown-menu absolute hidden text-gray-700">
-                  <%book=@book.id%>
-                  <li class=""><%= link_to 'Edit', edit_note_path(note,book), class: 'rounded-t bg-gray-300 hover:bg-gray-400 pb-2 px-4 block whitespace-no-wrap border border-white' %></li>
+                  <li class=""><%= link_to 'Edit', edit_note_path(note, book: @book.id), class: 'rounded-t bg-gray-300 hover:bg-gray-400 pb-2 px-4 block whitespace-no-wrap border border-white' %></li>
                   <li class=""><%= link_to 'Export', export_note_path(note.id), target:'_blank', class: 'rounded-b bg-gray-300 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap border-l border-r border-white'%></li>
                   <li class=""><%= link_to 'Delete', note, method: :delete, class: 'rounded-b bg-gray-300 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap border border-white'%></li>
                 </ul>

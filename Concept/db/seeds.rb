@@ -18,9 +18,9 @@ end
 
 
 lastUser= User.create(username: "Foxy", email: "fox@mail.com", password: 'blabla', password_confirmation: 'blabla')
-1.upto(rand(1..22)) do |l|
+1.upto(rand(1..40)) do |l|
   lastBook = lastUser.books.create title:"Book #{l}"
-  1.upto(rand(1..37)) do |m|
+  1.upto(rand(1..20)) do |m|
     lastBook.notes.create title: "> Note #{m} from #{lastBook.title}", content: "### Content for note #{m} ###", user_id: "#{lastUser.id}"
   end
 end

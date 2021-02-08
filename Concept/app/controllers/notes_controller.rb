@@ -66,12 +66,12 @@ class NotesController < ApplicationController
     if (@note.user_id == current_user.id)
       return @note
     else
-      redirect_to :root, notice: "Uh oh the page you are looking for doesn't exist."
+      redirect_to :root, error: "Uh oh the page you are looking for doesn't exist."
     end
   end
   
   # Only allow a list of trusted parameters through.
   def note_params
-    params.require(:note).permit(:title, :content)
+    params.require(:note).permit(:title, :content, :book_id)
   end
 end
