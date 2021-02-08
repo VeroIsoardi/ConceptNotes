@@ -1,0 +1,89 @@
+<div class="flex flex-col justify-between h-screen bg-white max-w-xs p-4">
+	<ul class="flex flex-col w-full">
+		 <li class="my-px">
+      <div class="flex justify-center"> 
+        <div class="my-px">
+          <%= link_to image_tag(asset_path('icon2.png'), class: "h-16 w-auto"), root_path %>
+        </div>
+      </div>
+    </li>
+		<li class="my-px">
+			<div class="h-12 px-4 rounded-lg text-gray-600 bg-gray-100 flex justify-start">
+        <div class="mt-1">
+          <img src="<%= asset_path('avatar.png') %>" class="rounded-full w-10 h-10"/>
+        </div>
+        <div>
+          <h4 class="font-semibold text-lg text-gray-700 capitalize tracking-wide mt-3 ml-2">
+            <%= current_user.username %>
+          </h4>
+        </div>
+			</div>
+		</li>
+		<li class="my-px">
+			<span class="flex font-medium text-sm text-gray-400 px-4 my-4 uppercase">Funcionalities</span>
+		</li>
+    <li class="my-px">
+      <div class="flex flex-row items-center h-12 px-4 rounded-lg text-gray-600 hover:bg-gray-100">
+				<span class="flex items-center justify-center text-lg text-gray-400">
+					<svg stroke-width="1.7" stroke="currentColor" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none">
+						<path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
+						<path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11h4m-2-2v4" />
+					</svg>
+				</span>
+        <%= link_to 'Add book', new_book_path, class: 'ml-3'%>
+			</div>
+		</li>
+    <li class="my-px">
+      <div class="flex flex-row items-center h-12 px-4 rounded-lg text-gray-600 hover:bg-gray-100">
+				<span class="flex items-center justify-center text-lg text-gray-400">
+					<svg stroke-width="1.5" stroke="currentColor" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none">
+						<path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V8z" clip-rule="evenodd" />
+					</svg>
+				</span>
+				<%book=nil%>
+        <%= link_to 'Add note', new_note_path(book), class: 'ml-3'%>
+			</div>
+		</li>
+    <li class="my-px">
+      <div class="flex flex-row items-center h-12 px-4 rounded-lg text-gray-600 hover:bg-gray-100">
+				<span class="flex items-center justify-center text-lg text-gray-400">
+					<svg stroke-width="1.5" stroke="currentColor" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none">
+						<path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
+					</svg>
+				</span>
+        <%= link_to 'Export all', :export, class: 'ml-3',  target:'_blank'%>
+			</div>
+		</li>
+		<li class="my-px">
+					<span class="flex font-medium text-sm text-gray-400 px-4 my-4 uppercase">Account</span>
+				</li>
+				<li class="my-px">
+					<div class="flex flex-row items-center h-12 px-4 rounded-lg text-gray-600 hover:bg-gray-100">
+						<span class="flex items-center justify-center text-lg text-gray-400">
+							<svg fill="none" stroke-linecap="round" stroke-linejoin="round"
+								stroke-width="2"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+								class="h-6 w-6">
+								<path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+							</svg>
+						</span>
+            <span class="ml-3"><%= link_to "Profile", edit_user_path(current_user.id) %></span>
+          </div>
+				</li>
+				<li class="my-px">
+					<div class="flex flex-row items-center h-12 px-4 rounded-lg text-gray-600 hover:bg-gray-100">
+						<span class="flex items-center justify-center text-lg text-red-400">
+							<svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+								class="h-6 w-6">
+								<path d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"></path>
+							</svg>
+						</span>
+            <span><%= link_to "Logout", session_path(current_user[:id]), method: :delete, class: 'ml-3' %></span>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>

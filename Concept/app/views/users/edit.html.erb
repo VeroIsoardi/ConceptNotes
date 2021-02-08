@@ -1,0 +1,50 @@
+<div class="lg:flex">
+  <div class="lg:w-1/2 xl:max-w-screen-sm">
+    <div class="pt-8 bg-red-100 lg:bg-white flex justify-center lg:justify-start lg:px-12">
+      <div class="cursor-pointer flex items-center">
+        <%= link_to :root do %>
+          <img class="w-24 mx-auto mb-5" src="<%= asset_path('icon2.png') %>">        
+        <% end %>
+      </div>
+    </div>
+    <div class=" px-12 sm:px-24 md:px-48 lg:px-12 xl:px-24 xl:max-w-2xl">
+      <h2 class="text-center text-4xl text-blue-700 font-display font-semibold lg:text-left xl:text-5xl
+      xl:text-bold">Update profile</h2>
+      <div class="mt-8">
+        <%= form_for @user do |f| %>
+          <div>
+            <div>
+              <%= f.label :email, "Email Address", class: 'text-sm font-bold text-gray-700 tracking-wide'%>
+              <%= f.email_field :email, class: 'w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-red-500' %>
+            </div>
+            <div class="mt-8">
+              <%= f.label :username,  class: 'text-sm font-bold text-gray-700 tracking-wide'%>
+              <%= f.text_field :username, class: 'w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-red-500' %>
+            </div>
+            <div class="mt-8">
+              <div class="flex justify-between items-center">
+                <%= f.label :password, "Password", class: 'text-sm font-bold text-gray-700 tracking-wide'%>
+              </div>
+                <%= f.password_field :password, class: 'w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-red-500'%>
+            </div>
+            <div class="mt-8">
+              <div class="flex justify-between items-center">
+                <%= f.label :password_confirmation, "Password Confirmation", class: 'text-sm font-bold text-gray-700 tracking-wide'%>
+              </div>
+                <%= f.password_field :password_confirmation, class: 'w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-red-500'%>
+            </div>
+            <div class="my-8">
+              <%= f.submit "Update", class: 'bg-red-500 text-gray-100 p-4 w-full rounded-full tracking-wide font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-red-600 shadow-lg' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="hidden lg:flex items-center justify-center bg-red-100 flex-1 h-screen">
+      <div class="max-w-xs  transform duration-200 hover:scale-150 cursor-pointer">
+        <img class="mx-auto mb-5 transform scale-125" src="<%= asset_path('Signup.png') %>">          
+      </div>
+    </div>
+  </div>
+</div>

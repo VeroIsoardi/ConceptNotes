@@ -1,0 +1,43 @@
+<div class="lg:flex">
+  <div class="lg:w-1/2 xl:max-w-screen-sm">
+    <div class="py-8 bg-red-100 lg:bg-white flex justify-center lg:justify-start lg:px-12">
+      <div class="cursor-pointer flex items-center">
+        <div>
+          <img class="w-28 mx-auto mb-5" src="<%= asset_path('icon2.png') %>">        
+        </div>
+      </div>
+    </div>
+    <div class="mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
+      <h2 class="text-center text-4xl text-blue-700 font-display font-semibold lg:text-left xl:text-5xl
+      xl:text-bold">Log in</h2>
+      <div class="mt-12">
+        <%= form_with url: sessions_path, method: :post do |f| %>
+          <div>
+            <div>
+              <%= f.label :email, "Email Address", class: 'text-sm font-bold text-gray-700 tracking-wide'%>
+              <%= f.text_field :email, class: 'w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-red-500' %>
+            </div>
+            <div class="mt-8">
+              <div class="flex justify-between items-center">
+                <%= f.label :password, "Password", class: 'text-sm font-bold text-gray-700 tracking-wide'%>
+              </div>
+                <%= f.password_field :password, class: 'w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-red-500'%>
+            </div>
+            <div class="mt-10">
+              <%= f.submit "Log In", class: 'bg-red-500 text-gray-100 p-4 w-full rounded-full tracking-wide font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-red-600 shadow-lg' %>
+            </div>
+          </div>
+        <% end %>
+        <div class="mt-8 text-sm font-display font-semibold text-gray-700 text-center">
+          Don't have an account ? <%= link_to 'Sign up', new_user_path, class: 'cursor-pointer text-red-600 hover:text-red-800'%>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hidden lg:flex items-center justify-center bg-red-100 flex-1 h-screen">
+      <div class="max-w-xs  transform duration-200 hover:scale-150 cursor-pointer">
+        <img class="mx-auto mb-5 transform scale-125" src="<%= asset_path('Login.png') %>">          
+      </div>
+    </div>
+  </div>
+</div>

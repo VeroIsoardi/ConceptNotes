@@ -1,0 +1,18 @@
+<nav class="relative flex flex-wrap items-center justify-between px-2 py-1 navbar-expand-lg bg-white mb-3 shadow-md">
+    <div class="w-full relative flex justify-between lg:w-auto px-6 lg:static lg:block lg:justify-start">
+      <div class="mr-4 py-2">
+        <img class="h-14 w-auto" src="<%= asset_path('icon2.png') %>">
+      </div>
+    </div>
+    <div class="lg:flex flex-grow items-center mr-12">
+      <ul class="flex flex-col lg:flex-row list-none ml-auto">
+          <li class="nav-item">
+            <%= link_to 'Log in', new_session_url, class: 'px-6 py-3 flex items-center text-sm font-bold text-red-400 hover:opacity-75'%>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Sign up', new_user_url , class: 'px-6 py-3 flex items-center text-sm font-bold  text-white bg-red-400 rounded-full shadow hover:shadow-lg outline-none focus:outline-none', style: 'transition: all .15s ease'%>
+          </li>
+      </ul>
+    </div>
+  </div>
+</nav>
