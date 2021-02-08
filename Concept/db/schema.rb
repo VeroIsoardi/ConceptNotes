@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2021_02_04_175912) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "title"], name: "index_books_on_user_id_and_title", unique: true
     t.index ["user_id"], name: "index_books_on_user_id"
   end
 
@@ -27,6 +28,7 @@ ActiveRecord::Schema.define(version: 2021_02_04_175912) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id", "title"], name: "index_notes_on_book_id_and_title", unique: true
     t.index ["book_id"], name: "index_notes_on_book_id"
     t.index ["user_id"], name: "index_notes_on_user_id"
   end
@@ -41,4 +43,7 @@ ActiveRecord::Schema.define(version: 2021_02_04_175912) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "books", "users"
+  add_foreign_key "notes", "books"
+  add_foreign_key "notes", "users"
 end
