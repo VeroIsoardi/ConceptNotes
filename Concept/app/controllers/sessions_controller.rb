@@ -10,14 +10,15 @@ class SessionsController < ApplicationController
     if @user
       redirect_back_or_to(:root)
     else
-      flash.now[:alert] = 'Login failed'
+      flash[:error] = 'Login failed'
       render :new
     end
   end
 
   def destroy
     logout
-    redirect_to :home, notice: 'Logout successful'
+    flash[:notice] = "Logout successful"
+    redirect_to :home
   end
 
   def user

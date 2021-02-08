@@ -15,7 +15,8 @@ class BooksController < ApplicationController
   def create
     @book = current_user.books.new(book_params)
     if @book.save
-      redirect_to :root, notice: "Book was successfully created."
+      flash[:notice] = "Book was successfully created."
+      redirect_to :root
     else
       render :new, status: :unprocessable_entity 
     end
@@ -24,7 +25,8 @@ class BooksController < ApplicationController
   # PATCH/PUT /books/1
   def update
     if @book.update(book_params)
-      redirect_to :root, notice: "Book was successfully updated."
+      flash[:notice] = "Book was successfully updated."
+      redirect_to :root
     else
       render :edit, status: :unprocessable_entity 
     end
@@ -33,7 +35,8 @@ class BooksController < ApplicationController
   # DELETE /books/1
   def destroy
     @book.destroy
-    redirect_to :root, notice: "Book was successfully destroyed."
+    flash[:notice] = "Book was successfully deleted."
+    redirect_to :root
   end
 
   def show
@@ -56,7 +59,8 @@ class BooksController < ApplicationController
     def set_book
       @book = Book.find(params[:id])
       if !(@book.user_id == current_user.id)
-        redirect_to :root, notice: "Uh oh the page you were looking for doesn't exist."
+        flash[:error] = "Uh oh wrong page!"
+        redirect_to :root
       else
         return @book
       end
