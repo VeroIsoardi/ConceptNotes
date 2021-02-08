@@ -1,7 +1,7 @@
 require 'commonmarker'
 class PreviewsController < ApplicationController
   def index
-    @books = current_user.books
+    @books = current_user.books.order(:id)
     @notes = current_user.notes.where(book_id: nil)
   end
 
