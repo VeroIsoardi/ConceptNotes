@@ -22,7 +22,3 @@
 - Create, update and delete note.
 - Export a note, a notebook or all notes.
 
----
-
-Default user: juan@mail.com
-password: blabla
