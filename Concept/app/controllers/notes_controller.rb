@@ -17,7 +17,7 @@ class NotesController < ApplicationController
   def create
     @note = current_user.notes.new(note_params)
     if @note.save
-      flash['notice'] = "Note was successfully created."
+      flash[:notice] = "Note was successfully created."
       if @note.book_id == nil
         redirect_to :root
       else
@@ -31,7 +31,7 @@ class NotesController < ApplicationController
   # PATCH/PUT /notes/1 
   def update
     if @note.update(note_params)
-      flash['notice'] = "Note was successfully updated."
+      flash[:notice] = "Note was successfully updated."
       if @note.book_id == nil
         redirect_to :root
       else
@@ -45,7 +45,7 @@ class NotesController < ApplicationController
   # DELETE /notes/1
   def destroy
     @note.destroy
-    flash[:notice] = "Note was successfully destroyed."
+    flash[:notice] = "Note was successfully deleted."
     if @note.book_id == nil
       redirect_to :root
     else
@@ -66,7 +66,8 @@ class NotesController < ApplicationController
     if (@note.user_id == current_user.id)
       return @note
     else
-      redirect_to :root, error: "Uh oh the page you are looking for doesn't exist."
+      flash[:error] = "Uh oh wrong page!"
+      redirect_to :root
     end
   end
   

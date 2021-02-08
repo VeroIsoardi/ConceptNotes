@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   private
   def not_logged
     if  logged_in?
-      flash[:error] = "Hey! This is not the page you are looking for."
+      flash[:error] = "Uh oh wrong page!"
       redirect_to :root
     end
   end

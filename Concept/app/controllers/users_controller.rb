@@ -21,7 +21,8 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to :root, notice: "Profile was successfully updated."
+      flash[:notice] = "Profile was successfully updated."
+      redirect_to :root
     else
       render :edit, status: :unprocessable_entity 
     end
