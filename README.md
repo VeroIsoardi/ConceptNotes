@@ -1,4 +1,8 @@
 # Concept App
+### Trabajo para la materia Taller de Tecnologías de Producción de Software opción Ruby de la titulación Analista Programador Universitario, UNLP.
+
+Consiste en el desarrollo de una aplicación web usando Ruby on Rails, para el manejo de notas. Consta de usuarios y el manejo de sesiones asociado, y del CRUD de notas y cuadernos.
+***
 
 - Ruby version: 2.7.1
 
@@ -18,7 +22,8 @@
 ### Funcionalities
 
 - User sign up and log in.
-- Create, rename and delete notebook.
-- Create, update and delete note.
-- Export a note, a notebook or all notes.
+- Create, rename, export and delete notebook.
+- Create, update, export and delete note.
+- Export all notes.
+- Update user.
 
