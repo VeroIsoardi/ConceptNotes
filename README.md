@@ -19,7 +19,7 @@ Consiste en el desarrollo de una aplicación web usando Ruby on Rails, para el m
 
 ---
 
-### Funcionalities
+### Funcionalidades
 
 - User sign up and log in.
 - Create, rename, export and delete notebook.
