@@ -27,3 +27,4 @@ Consiste en el desarrollo de una aplicación web usando Ruby on Rails, para el m
 - Export all notes.
 - Update user.
 
+![image](https://github.com/user-attachments/assets/ae7307e0-9938-40b0-b446-5b97b392972b)
