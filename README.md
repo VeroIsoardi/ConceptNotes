@@ -1,30 +1,34 @@
-# Concept App
-### Trabajo para la materia Taller de Tecnologías de Producción de Software opción Ruby de la titulación Analista Programador Universitario, UNLP.
+# Concept Notes
 
-Consiste en el desarrollo de una aplicación web usando Ruby on Rails, para el manejo de notas. Consta de usuarios y el manejo de sesiones asociado, y del CRUD de notas y cuadernos.
-***
+A notes app where users organise notes into notebooks and export them as HTML.
 
-- Ruby version: 2.7.1
+Built for *Taller de Tecnologías de Producción de Software* (Ruby track), part of the Analista Programador Universitario degree at UNLP.
 
-- Rails version: 6.1.1
+![Ruby on Rails 6](https://img.shields.io/badge/Rails_6.1-D30001?style=flat-square&logo=rubyonrails&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white)
 
-- Mysql database
+![Concept Notes screenshot](https://github.com/user-attachments/assets/ae7307e0-9938-40b0-b446-5b97b392972b)
 
-- Sorcery gem for authentication
+## Features
 
-- Tailwind css gem for views
+- Sign up, log in and edit your account (authentication with Sorcery).
+- Create, rename, export and delete notebooks.
+- Create, edit, export and delete notes.
+- Export every note at once.
 
-- Database creation
-  > rails db:drop db:create db:migrate db:seed
+## Stack
 
----
+Ruby 2.7 · Rails 6.1 · MySQL · Sorcery · Tailwind CSS
 
-### Funcionalidades
+## Setup
 
-- User sign up and log in.
-- Create, rename, export and delete notebook.
-- Create, update, export and delete note.
-- Export all notes.
-- Update user.
+The app lives in [`Concept/`](Concept/).
 
-![image](https://github.com/user-attachments/assets/ae7307e0-9938-40b0-b446-5b97b392972b)
+```bash
+cd Concept
+bundle install
+yarn install
+rails db:create db:migrate db:seed
+rails server
+```
